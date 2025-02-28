@@ -70,7 +70,7 @@ header nav ul li a:hover {
     background: linear-gradient(135deg, #f5a623, #f8d375), url('img/hero-bg.jpg');
     background-size: cover;
     background-position: center;
-    color: #fff;
+    color: #010f14;
     text-align: center;
     padding: 100px 20px;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
