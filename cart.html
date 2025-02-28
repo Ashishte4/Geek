@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Nepshoes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo"><span>nep</span>shoes</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cart.html" class="btn">Go to Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section class="cart">
+        <div class="container">
+            <h2>Your Shopping Cart</h2>
+
+        
+            <div class="cart-items">
+            
+                <script>
+                    
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const productName = urlParams.get('product');
+                    const price = parseFloat(urlParams.get('price'));
+
+                    
+                    const productImages = {
+                        "Sneakers": "sneaker1.png",
+                        "Running Shoes": "running2.png",
+                        "Dress Boots": "Dress Boot.3.png",
+                        "Heels": "heels4.png",
+                        "Loafers": "loafers.png"
+                    };
+
+                    const productImage = productImages[productName];
+
+                    if (productImage) {
+                        
+                        const cartItemsDiv = document.querySelector('.cart-items');
+                        cartItemsDiv.innerHTML = `
+                            <div class="cart-item">
+                                <div class="cart-item-info">
+                                    <img src="img/${productImage}" alt="${productName}">
+                                    <div class="product-details">
+                                        <h3>${productName}</h3>
+                                        <p>Price: $<span class="product-price">${price.toFixed(2)}</span></p>
+                                        <p>Size: 10</p> <!-- Example size -->
+                                        <p>Color: Black</p> <!-- Example color -->
+                                    </div>
+                                </div>
+                                <div class="cart-item-actions">
+                                    <button class="remove-btn">Remove</button>
+                                    <input type="number" value="1" min="1" class="quantity-input">
+                                </div>
+                            </div>
+                        `;
+
+                        
+                        const quantityInput = document.querySelector('.quantity-input');
+                        const priceDisplay = document.querySelector('.product-price');
+                        const totalPriceDisplay = document.querySelector('#total-price');
+
+                        totalPriceDisplay.textContent = (price).toFixed(2);
+
+                        quantityInput.addEventListener('input', function () {
+                            const quantity = parseInt(quantityInput.value);
+                            const totalPrice = (quantity * price).toFixed(2);
+                            priceDisplay.textContent = totalPrice;
+                            totalPriceDisplay.textContent = totalPrice;
+                        });
+                    } else {
+                        alert("Product not found in cart.");
+                    }
+                </script>
+
+            </div>
+
+        
+            <div class="cart-total">
+                <div class="total-info">
+                    <h3>Total: $<span id="total-price">0.00</span></h3> 
+                    <a href="checkout.html" class="btn checkout-btn">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p>&copy; 2024 <span>Nepshoes</span>. All rights reserved. | Designed by Ashish</p>
+    </footer>
+
+</body>
+</html>
